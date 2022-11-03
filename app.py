@@ -456,7 +456,7 @@ def save_stix_file(report, title, date, ttps, output_file):
     copyfile(file_to_save, output_file)
 
 
-def predict(report_to_predict_file, output_file, title, date):
+def predict(report_to_predict_file):
     """
 	Predict tactics and techniques from a report in a txt file.
 	"""
@@ -521,11 +521,8 @@ def predict(report_to_predict_file, output_file, title, date):
     for tpte in to_print_techniques:
         print(tpte)
 
-    if output_file != '':
-        save_stix_file(report_to_predict, title, date, ttps, output_file)
-        print("Results saved in " + output_file)
 
 
 predict(
-    "report.txt", "out.txt", "sample", "2022-01-01"
+    "report.txt"
 )
