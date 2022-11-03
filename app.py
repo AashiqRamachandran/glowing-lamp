@@ -521,8 +521,7 @@ def predict(report_to_predict_file):
     for tpte in to_print_techniques:
         print(tpte)
 
-
-
-predict(
-    "report.txt"
-)
+    return {
+        "tactics": to_print_tactics,
+        "techniques": to_print_techniques
+    }
