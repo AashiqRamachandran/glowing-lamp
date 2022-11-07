@@ -456,13 +456,12 @@ def save_stix_file(report, title, date, ttps, output_file):
     copyfile(file_to_save, output_file)
 
 
-def predict(report_to_predict_file):
+def predict(data):
     """
 	Predict tactics and techniques from a report in a txt file.
 	"""
-    with open(report_to_predict_file, 'r', newline='') as filetoread:
-        data = filetoread.read()
-        report_to_predict = prp.remove_u(data)
+
+    report_to_predict = prp.remove_u(data)
 
     # load postprocessingand min-max confidence score for both tactics and techniques predictions
     parameters = joblib.load("classification_tools/data/configuration.joblib")
