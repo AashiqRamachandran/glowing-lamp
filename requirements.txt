@@ -15,4 +15,5 @@ certifi
 six
 idna
 urllib3
+scipy
 scikit-learn==0.19.2
