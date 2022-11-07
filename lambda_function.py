@@ -440,3 +440,4 @@ C2 Servers
     """,
     "isBase64Encoded": False
 }
+lambda_handler(x, None)
