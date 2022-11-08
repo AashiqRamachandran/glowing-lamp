@@ -2,6 +2,9 @@ import re
 
 from sklearn.base import BaseEstimator, TransformerMixin
 
+from nltk import word_tokenize
+from nltk.stem import WordNetLemmatizer
+from nltk.stem.snowball import EnglishStemmer
 
 
 def clean_text(text):
@@ -60,6 +63,31 @@ def remove_u(input_string):
     words_u = [word_u.split('\\u')[1] if r'\u' in word_u else word_u for word_u in words_u]
     return ' '.join(words_u)
 
+
+class StemTokenizer(object):
+    """
+	Transform each word to its stemmed version
+	e.g. studies --> studi
+	"""
+
+    def __init__(self):
+        self.st = EnglishStemmer()
+
+    def __call__(self, doc):
+        return [self.st.stem(t) for t in word_tokenize(doc)]
+
+
+class LemmaTokenizer(object):
+    """
+	Transform each word to its lemmatized version
+	e.g. studies --> study
+	"""
+
+    def __init__(self):
+        self.wnl = WordNetLemmatizer()
+
+    def __call__(self, doc):
+        return [self.wnl.lemmatize(t) for t in word_tokenize(doc)]
 
 
 class TextSelector(BaseEstimator, TransformerMixin):
