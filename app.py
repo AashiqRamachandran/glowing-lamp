@@ -511,16 +511,37 @@ def predict(data):
     to_print_tactics = sorted(to_print_tactics, key=itemgetter(2), reverse=True)
     to_print_techniques = sorted(to_print_techniques, key=itemgetter(2), reverse=True)
 
-    print("Predictions for the given report are : ")
-    print("Tactics :")
-    for tpta in to_print_tactics:
-        print(tpta)
+    response_tactics = []
+    response_techniques = []
 
-    print("Techniques :")
+    for tpta in to_print_tactics:
+        if tpta[0] == 1:
+            item = tpta[1]
+            confidence = tpta[2]
+
+            _dict = {
+                "item": item,
+                "confidence": confidence
+            }
+            response_tactics.append(_dict)
+        else:
+            # Lower confidence items come here
+            pass
+
     for tpte in to_print_techniques:
-        print(tpte)
+        if tpte[0] == 1:
+            item = tpte[1]
+            confidence = tpte[2]
+            _dict = {
+                "item": item,
+                "confidence": confidence
+            }
+            response_techniques.append(_dict)
+        else:
+            # Lower confidence items come here
+            pass
 
     return {
-        "tactics": to_print_tactics,
-        "techniques": to_print_techniques
+        "tactics": response_tactics,
+        "techniques": response_techniques
     }

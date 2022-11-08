@@ -1,3 +1,4 @@
+MAINTAINER Aashiq Ramachandran
 FROM public.ecr.aws/lambda/python:3.7
 COPY . .
 RUN pip3 install numpy==1.21.6
